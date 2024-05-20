@@ -10,7 +10,7 @@
     <tbody>
       <tr v-for="(item, index) in items" :key="index">
         <td v-for="(column, columnIndex) in columns" :key="columnIndex">
-          <slot :name="column.slotName" :item="item"></slot>
+          <component :is="column.vnode.children.default" :item="item" />
         </td>
       </tr>
     </tbody>
@@ -24,6 +24,7 @@ import { defineProps, ref, provide } from 'vue'
 interface Column {
   header: string
   slotName: string
+  vnode: any
 }
 
 const props = defineProps<{ items: any[] }>()

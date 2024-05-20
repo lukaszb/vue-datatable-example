@@ -6,11 +6,12 @@ const registerColumn = inject<Function>('registerColumn')
 
 onMounted(() => {
   const instance = getCurrentInstance()
-  if (instance && instance.vnode && instance.vnode.key && registerColumn) {
+  if (instance && instance.vnode && registerColumn) {
     const slotName = instance.vnode.key as string
     registerColumn({
       header: props.header,
-      slotName: slotName
+      slotName: slotName,
+      vnode: instance.vnode
     })
   }
 })
