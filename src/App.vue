@@ -12,10 +12,10 @@ const items = ref([
 <template>
   <div>
     <Table :items="items">
-      <template v-slot:id="{ item }">
+      <template #id="{ item }">
         {{ item.id }}
       </template>
-      <template v-slot:name="{ item }">
+      <template #name="{ item }">
         {{ item.name }}
       </template>
       <Column header="ID" key="id"></Column>
