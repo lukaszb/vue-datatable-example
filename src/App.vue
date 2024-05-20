@@ -1,47 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+import Table from './Table.vue'
+import Column from './Column.vue'
+
+const items = ref([
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Smith' }
+])
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <Table :items="items">
+      <template v-slot:id="{ item }">
+        {{ item.id }}
+      </template>
+      <template v-slot:name="{ item }">
+        {{ item.name }}
+      </template>
+      <Column header="ID" key="id"></Column>
+      <Column header="Name" key="name"></Column>
+    </Table>
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
