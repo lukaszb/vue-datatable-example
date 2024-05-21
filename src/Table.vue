@@ -3,7 +3,8 @@
     <thead>
       <tr>
         <th v-for="(column, index) in columns" :key="index">
-          {{ column.header }}
+          <component v-if="column.vnode.children.header" :is="column.vnode.children.header" />
+          <template v-else>{{ column.header }}</template>
         </th>
       </tr>
     </thead>

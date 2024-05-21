@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, inject, onMounted, onUpdated, getCurrentInstance } from 'vue'
 
-const props = defineProps<{ header: string }>()
+const props = defineProps<{ header?: string }>()
 const registerColumn = inject<Function>('registerColumn')
 
 const register = () => {

@@ -27,7 +27,8 @@ const items = ref([
           {{ item.name }}
         </template>
       </Column>
-      <Column header="Name 3">
+      <Column>
+        <template #header> static header </template>
         <template #default="{ item }"> Foobar </template>
       </Column>
     </Table>
