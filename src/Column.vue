@@ -1,18 +1,25 @@
 <script setup lang="ts">
-import { defineProps, inject, onMounted, getCurrentInstance } from 'vue'
+import { defineProps, inject, onMounted, onUpdated, getCurrentInstance } from 'vue'
 
 const props = defineProps<{ header: string }>()
 const registerColumn = inject<Function>('registerColumn')
 
-onMounted(() => {
+const register = () => {
   const instance = getCurrentInstance()
   if (instance && instance.vnode && registerColumn) {
-    const slotName = instance.vnode.key as string
     registerColumn({
       header: props.header,
-      slotName: slotName,
-      vnode: instance.vnode
+      vnode: instance.vnode,
+      instance
     })
   }
+}
+
+onMounted(() => {
+  register()
+})
+
+onUpdated(() => {
+  register()
 })
 </script>

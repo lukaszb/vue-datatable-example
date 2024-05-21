@@ -23,7 +23,6 @@ import { defineProps, ref, provide } from 'vue'
 
 interface Column {
   header: string
-  slotName: string
   vnode: any
 }
 
@@ -32,7 +31,12 @@ const columns = ref<Column[]>([])
 
 function registerColumn(column: Column) {
   console.log(' => registerColumn', column)
-  columns.value.push(column)
+  const idx = columns.value.findIndex((c) => c.instance.uid === column.instance.uid)
+  if (idx >= 0) {
+    columns.value[idx] = column
+  } else {
+    columns.value.push(column)
+  }
 }
 
 Object.assign(window, { columns })

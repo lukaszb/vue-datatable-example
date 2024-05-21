@@ -14,13 +14,21 @@ const items = ref([
     <Table :items="items">
       <Column header="ID">
         <template #default="{ item }">
-          {{ item.name }}
+          {{ item.id }}
         </template>
       </Column>
       <Column header="Name">
         <template #default="{ item }">
           {{ item.name }}
         </template>
+      </Column>
+      <Column header="Name 2">
+        <template #default="{ item }">
+          {{ item.name }}
+        </template>
+      </Column>
+      <Column header="Name 3">
+        <template #default="{ item }"> Foobar </template>
       </Column>
     </Table>
   </div>
